@@ -1,0 +1,16 @@
+{
+  "name": "layered",
+  "main": "worker.js",
+  "compatibility_date": "2025-01-01",
+  "assets": { "directory": "./public", "binding": "ASSETS", "run_worker_first": ["/api/*"] },
+  "durable_objects": { "bindings": [
+    { "name": "REVIEWS", "class_name": "ReviewHub" },
+    { "name": "USERS", "class_name": "UserHub" },
+    { "name": "FILES", "class_name": "FileHub" }
+  ] },
+  "migrations": [
+    { "tag": "v1", "new_sqlite_classes": ["ReviewHub"] },
+    { "tag": "v2", "new_sqlite_classes": ["UserHub", "FileHub"] }
+  ],
+  "ai": { "binding": "AI" }
+}
